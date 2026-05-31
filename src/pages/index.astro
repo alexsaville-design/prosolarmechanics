@@ -97,16 +97,21 @@ import Layout from '../layouts/Layout.astro';
       <p>things are happening now. i don't feel the way i once did about this place and i've finally decided to get going...</p>
       <a href="/log" class="read">read →</a>
     </div>
-    <div class="log-card">
-      <div class="date">log 9 · 08.2003</div>
-      <div class="thumb" style="background:#0e1516;"></div>
-      <p>we played the show at maxwell's. it was something. the room was full and the sound was right for once...</p>
-      <a href="/log" class="read">read →</a>
-    </div>
     <div class="log-card substack">
       <div class="date sub">new · from substack</div>
       <p>new entries pulled automatically as amy posts to the band substack. old entries going back to 1997 are all here in the archive.</p>
       <a href="/log" class="read">read on substack →</a>
+    </div>
+    <div class="log-card" style="border:1px solid #1a1a1a; background:#0a0a0a;">
+      <div class="date" style="color:#4ecdc4; letter-spacing:3px;">dates</div>
+      <div class="date-entry" style="margin-top:8px;">
+        <div class="event-name">a bionic benefit</div>
+        <div class="when">saturday, june 13, 2026 · 8pm</div>
+        <div class="where">pino's gift basket shoppe, wine cellar &amp; lounge</div>
+        <div class="address">13 no 4th ave · highland park, nj</div>
+        <a href="https://www.facebook.com/events/977817404822674" target="_blank" class="event-link">event info ↗</a>
+      </div>
+      <a href="/dates" class="read" style="margin-top:16px;">all dates →</a>
     </div>
   </div>
   <div class="all-entries"><a href="/log" style="color:#333; text-decoration:none;">all log entries ↓</a></div>
@@ -149,17 +154,7 @@ import Layout from '../layouts/Layout.astro';
   </div>
 
   <div class="bottom-row">
-    <div class="bottom-col">
-      <div class="section-label">dates</div>
-      <div class="date-entry">
-        <div class="event-name">a bionic benefit</div>
-        <div class="when">saturday, june 13, 2026 · 8pm</div>
-        <div class="where">pino's gift basket shoppe, wine cellar & lounge</div>
-        <div class="address">13 no 4th ave · highland park, nj</div>
-        <a href="https://www.facebook.com/events/977817404822674" target="_blank" class="event-link">event info ↗</a>
-      </div>
-    </div>
-    <div class="bottom-col">
+    <div class="bottom-col" style="grid-column: 1 / -1;">
       <div class="section-label">contact</div>
       <a href="mailto:prosolarmechanics@gmail.com" class="contact-email">prosolarmechanics@gmail.com</a>
       <div class="contact-sub">bookings · press · transmissions</div>
