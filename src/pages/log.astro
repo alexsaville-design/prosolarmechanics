@@ -1,5 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const substackEntries = (await getCollection('log'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 <Layout title="mechanics' log" activePage="log">
   <style>
@@ -8,13 +12,27 @@ import Layout from '../layouts/Layout.astro';
     .log-intro a { color: #4ecdc4; }
     .entries { padding: 24px 0; }
     .entry { border-bottom: 1px solid #111; padding: 24px 0; display: grid; grid-template-columns: 120px 1fr; gap: 24px; }
+    .entry:last-child { border-bottom: none; }
     .entry-meta { font-size: 11px; color: #555; letter-spacing: 1px; line-height: 1.8; }
     .entry-meta .entry-num { font-size: 16px; color: #333; display: block; margin-bottom: 4px; }
     .entry-body .entry-title { font-size: 15px; color: #ddd; margin-bottom: 10px; font-family: Georgia, serif; font-weight: 400; }
     .entry-body p { font-size: 13px; color: #999; line-height: 1.75; }
     .entry-body .read { font-size: 12px; color: #c9a227; margin-top: 12px; display: inline-block; }
-    .substack-section { padding: 32px 0; border-top: 1px solid #1e1a10; }
+
+    .section-divider { padding: 32px 0 0; }
+    .archive-label { font-size: 11px; color: #4ecdc4; letter-spacing: 4px; margin-bottom: 24px; }
+    .substack-label { font-size: 11px; color: #4ecdc4; letter-spacing: 4px; margin-bottom: 24px; }
+
+    .new-entries { padding: 24px 0 0; }
+    .new-entry { border-bottom: 1px solid #111; padding: 24px 0; display: grid; grid-template-columns: 120px 1fr; gap: 24px; }
+    .new-entry:last-child { border-bottom: none; }
+    .new-entry-meta { font-size: 11px; color: #555; letter-spacing: 1px; line-height: 1.8; }
+    .new-entry-body .entry-title { font-size: 15px; color: #ddd; margin-bottom: 10px; font-family: Georgia, serif; font-weight: 400; }
+    .new-entry-body p { font-size: 13px; color: #999; line-height: 1.75; }
+    .new-entry-body .read { font-size: 12px; color: #c9a227; margin-top: 12px; display: inline-block; }
+
     .substack-callout {
+      margin: 0 0 32px;
       border: 1px solid #1e1a10;
       border-left: 2px solid #c9a227;
       background: #0d0b08;
@@ -22,12 +40,43 @@ import Layout from '../layouts/Layout.astro';
     }
     .substack-callout p { font-size: 13px; color: #999; line-height: 1.7; margin-bottom: 12px; }
     .substack-callout a { color: #4ecdc4; }
+
+    @media (max-width: 640px) {
+      .entry, .new-entry { grid-template-columns: 1fr; gap: 8px; }
+      .entry-meta .entry-num { font-size: 13px; }
+    }
   </style>
 
   <div class="log-intro">
     <div class="section-label">mechanics' log</div>
-    <p>an ongoing account of missions, thoughts, and transmissions — from 1997 to the present.<br>
-    new entries via <a href="#substack">the band substack</a>. archived entries below.</p>
+    <p>an ongoing account of missions, thoughts, and transmissions — from 1997 to the present.</p>
+  </div>
+
+  {substackEntries.length > 0 && (
+    <div class="section-divider">
+      <div class="substack-label">new transmissions</div>
+      <div class="new-entries">
+        {substackEntries.map(entry => (
+          <div class="new-entry">
+            <div class="new-entry-meta">
+              {entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.')}
+            </div>
+            <div class="new-entry-body">
+              <div class="entry-title">{entry.data.title}</div>
+              {entry.data.description && <p>{entry.data.description}</p>}
+              <a href={`/log/${entry.slug}`} class="read">read →</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <div class="section-divider">
+    <div class="archive-label">archive · 1997–2004</div>
+    <div class="substack-callout">
+      <p>new writing is published to <a href="https://prosolarmechanics.substack.com" target="_blank">the band substack</a> and appears above automatically.</p>
+    </div>
   </div>
 
   <div class="entries">
@@ -42,7 +91,7 @@ import Layout from '../layouts/Layout.astro';
         <a href="/log/51" class="read">read full entry →</a>
       </div>
     </div>
-    <div class="entry" style="border-bottom:none;">
+    <div class="entry">
       <div class="entry-meta">
         <span class="entry-num" style="color:#444;">1</span>
         01.10.1998
@@ -52,13 +101,6 @@ import Layout from '../layouts/Layout.astro';
         <p>the saint, asbury park. the budapest. we fest wilmington. coney island high. the first year on record — january through september, 1998.</p>
         <a href="/log/1" class="read">read from the beginning →</a>
       </div>
-    </div>
-  </div>
-
-  <div class="substack-section" id="substack">
-    <div class="substack-callout">
-      <p>amy posts new entries to the band substack. all new writing lives there — this archive covers the original run of the mechanics' log from 1997–2004.</p>
-      <a href="#" target="_blank">read new entries on substack ↗</a>
     </div>
   </div>
 </Layout>
