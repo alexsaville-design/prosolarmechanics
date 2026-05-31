@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="mechanics' log" activePage="log">
+  <style>
+    .log-intro { padding: 32px 0 24px; border-bottom: 1px solid #141414; }
+    .log-intro p { font-size: 13px; color: #666; line-height: 1.7; }
+    .log-intro a { color: #4ecdc4; }
+    .entries { padding: 24px 0; }
+    .entry { border-bottom: 1px solid #111; padding: 24px 0; display: grid; grid-template-columns: 120px 1fr; gap: 24px; }
+    .entry-meta { font-size: 11px; color: #555; letter-spacing: 1px; line-height: 1.8; }
+    .entry-meta .entry-num { font-size: 16px; color: #333; display: block; margin-bottom: 4px; }
+    .entry-body .entry-title { font-size: 15px; color: #ddd; margin-bottom: 10px; font-family: Georgia, serif; font-weight: 400; }
+    .entry-body p { font-size: 13px; color: #999; line-height: 1.75; }
+    .entry-body .read { font-size: 12px; color: #c9a227; margin-top: 12px; display: inline-block; }
+    .substack-section { padding: 32px 0; border-top: 1px solid #1e1a10; }
+    .substack-callout {
+      border: 1px solid #1e1a10;
+      border-left: 2px solid #c9a227;
+      background: #0d0b08;
+      padding: 20px 24px;
+    }
+    .substack-callout p { font-size: 13px; color: #999; line-height: 1.7; margin-bottom: 12px; }
+    .substack-callout a { color: #4ecdc4; }
+  </style>
+
+  <div class="log-intro">
+    <div class="section-label">mechanics' log</div>
+    <p>an ongoing account of missions, thoughts, and transmissions — from 1997 to the present.<br>
+    new entries via <a href="#substack">the band substack</a>. archived entries below.</p>
+  </div>
+
+  <div class="entries">
+    <div class="entry">
+      <div class="entry-meta">
+        <span class="entry-num">51</span>
+        10.15.2003
+      </div>
+      <div class="entry-body">
+        <div class="entry-title">things are happening now</div>
+        <p>i don't feel the way i once did about this place and i've finally decided to get going. much of my time here has been spent trying to reach understanding...</p>
+        <a href="/log/51" class="read">read full entry →</a>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="entry-meta">
+        <span class="entry-num">9</span>
+        08.2003
+      </div>
+      <div class="entry-body">
+        <div class="entry-title">maxwell's</div>
+        <p>we played the show at maxwell's. it was something. the room was full and the sound was right for once...</p>
+        <a href="/log/9" class="read">read full entry →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="substack-section" id="substack">
+    <div class="substack-callout">
+      <p>amy posts new entries to the band substack. all new writing lives there — this archive covers the original run of the mechanics' log from 1997–2004.</p>
+      <a href="#" target="_blank">read new entries on substack ↗</a>
+    </div>
+  </div>
+</Layout>

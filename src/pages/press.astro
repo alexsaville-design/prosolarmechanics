@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="press" activePage="press">
+  <style>
+    .press-list { padding: 32px 0; }
+    .press-item { border-bottom: 1px solid #111; padding: 24px 0; display: grid; grid-template-columns: 160px 1fr; gap: 24px; }
+    .press-meta { font-size: 11px; color: #555; letter-spacing: 1px; line-height: 1.8; }
+    .press-source { font-size: 15px; color: #ddd; margin-bottom: 6px; font-family: Georgia, serif; font-weight: 400; }
+    .press-detail { font-size: 13px; color: #888; line-height: 1.7; }
+    .press-link { font-size: 12px; color: #c9a227; margin-top: 10px; display: inline-block; }
+    .archive-note { padding: 24px 0; font-size: 12px; color: #444; border-top: 1px solid #111; }
+  </style>
+
+  <div style="padding-top: 32px;">
+    <div class="section-label">press</div>
+  </div>
+
+  <div class="press-list">
+    <div class="press-item">
+      <div class="press-meta">feature article<br>c. 2002</div>
+      <div>
+        <div class="press-source">"studio tan" · chris wargo</div>
+        <div class="press-detail">a feature article on prosolar mechanics by chris wargo.</div>
+        <a href="/press/studio-tan" class="press-link">read →</a>
+      </div>
+    </div>
+    <div class="press-item">
+      <div class="press-meta">jersey beat<br>2000</div>
+      <div>
+        <div class="press-source">jersey beat — w/e fest 2000</div>
+        <div class="press-detail">coverage of prosolar mechanics at w/e fest 2000. also: top 50 nj releases of 1999.</div>
+      </div>
+    </div>
+    <div class="press-item">
+      <div class="press-meta">college radio<br>1999</div>
+      <div>
+        <div class="press-source">college radio charts · 1999</div>
+        <div class="press-detail">charted nationally on college radio for multiple weeks in fall 1999. kzsu, and stations across the country.</div>
+      </div>
+    </div>
+    <div class="press-item">
+      <div class="press-meta">new brunswick<br>underground</div>
+      <div>
+        <div class="press-source">new brunswick underground magazine</div>
+        <div class="press-detail">feature on prosolar mechanics and a review of studio tan.</div>
+      </div>
+    </div>
+    <div class="press-item">
+      <div class="press-meta">_excerpt zine<br>1999</div>
+      <div>
+        <div class="press-source">_excerpt zine — mp3 reviews</div>
+        <div class="press-detail">review of prosolar mechanics mp3 releases.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="archive-note">all press is archival — prosolar mechanics were active 1997–2004 and are now returning.</div>
+</Layout>

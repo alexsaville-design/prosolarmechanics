@@ -1,0 +1,168 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="prosolar mechanics" activePage="home">
+  <style>
+    .home-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 32px 0 24px;
+      border-bottom: 1px solid #141414;
+    }
+    .home-section-label {
+      font-size: 11px;
+      color: #4ecdc4;
+      letter-spacing: 4px;
+      margin-bottom: 20px;
+      padding-top: 32px;
+    }
+    .log-card {
+      border: 1px solid #1e1e1e;
+      background: #0d0d0d;
+      padding: 16px;
+    }
+    .log-card.substack {
+      border: 1px solid #1e1a10;
+      background: #0d0b08;
+      border-left: 2px solid #c9a227;
+    }
+    .log-card .date {
+      font-size: 11px;
+      color: #555;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    .log-card .date.sub { color: #4ecdc4; }
+    .log-card .thumb {
+      width: 100%;
+      height: 70px;
+      background: #1a1512;
+      margin-bottom: 12px;
+    }
+    .log-card p { font-size: 12px; color: #bbb; line-height: 1.7; }
+    .log-card .read {
+      font-size: 11px;
+      color: #c9a227;
+      margin-top: 12px;
+      display: inline-block;
+    }
+    .all-entries {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 11px;
+      color: #333;
+      letter-spacing: 2px;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .col {
+      padding: 28px 0;
+      border-bottom: 1px solid #141414;
+    }
+    .col:first-child { padding-right: 40px; border-right: 1px solid #141414; }
+    .col:last-child { padding-left: 40px; }
+    .release { margin-bottom: 16px; }
+    .release .title { font-size: 13px; color: #bbb; margin-bottom: 4px; }
+    .press-item { margin-bottom: 14px; }
+    .press-item .source { font-size: 13px; color: #bbb; margin-bottom: 3px; }
+    .press-item .detail { font-size: 11px; color: #555; }
+    .bottom-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid #141414;
+    }
+    .bottom-col { padding: 28px 0; }
+    .bottom-col:first-child { padding-right: 40px; border-right: 1px solid #141414; }
+    .bottom-col:last-child { padding-left: 40px; }
+    .no-dates { font-size: 12px; color: #444; font-style: italic; }
+    .date-entry { margin-bottom: 20px; }
+    .date-entry .event-name { font-size: 14px; color: #c9a227; margin-bottom: 5px; }
+    .date-entry .when { font-size: 12px; color: #bbb; margin-bottom: 3px; }
+    .date-entry .where { font-size: 12px; color: #888; margin-bottom: 3px; }
+    .date-entry .address { font-size: 11px; color: #555; }
+    .date-entry .event-link { font-size: 11px; color: #4ecdc4; margin-top: 6px; display: inline-block; }
+    .contact-email { font-size: 14px; }
+    .contact-sub { font-size: 11px; color: #444; margin-top: 6px; }
+  </style>
+
+  <div class="home-section-label">mechanics' log</div>
+  <div class="home-grid">
+    <div class="log-card">
+      <div class="date">log 51 · 10.15.2003</div>
+      <div class="thumb"></div>
+      <p>things are happening now. i don't feel the way i once did about this place and i've finally decided to get going...</p>
+      <a href="/log" class="read">read →</a>
+    </div>
+    <div class="log-card">
+      <div class="date">log 9 · 08.2003</div>
+      <div class="thumb" style="background:#0e1516;"></div>
+      <p>we played the show at maxwell's. it was something. the room was full and the sound was right for once...</p>
+      <a href="/log" class="read">read →</a>
+    </div>
+    <div class="log-card substack">
+      <div class="date sub">new · from substack</div>
+      <p>new entries pulled automatically as amy posts to the band substack. old entries going back to 1997 are all here in the archive.</p>
+      <a href="/log" class="read">read on substack →</a>
+    </div>
+  </div>
+  <div class="all-entries"><a href="/log" style="color:#333; text-decoration:none;">all log entries ↓</a></div>
+
+  <div class="two-col">
+    <div class="col">
+      <div class="section-label">sound</div>
+      <div class="release">
+        <div class="title">the lincoln hill demo</div>
+        <a href="#">listen on bandcamp ↗</a>
+      </div>
+      <div class="release">
+        <div class="title">urban development series vol. 4</div>
+        <a href="#">listen on bandcamp ↗</a>
+      </div>
+      <div class="release">
+        <div class="title">turn on</div>
+        <a href="#">listen on bandcamp ↗</a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="section-label">press</div>
+      <div class="press-item">
+        <div class="source">"studio tan" · chris wargo</div>
+        <div class="detail">feature article</div>
+      </div>
+      <div class="press-item">
+        <div class="source">jersey beat</div>
+        <div class="detail">w/e fest 2000 · top 50 nj releases 1999</div>
+      </div>
+      <div class="press-item">
+        <div class="source">college radio charts · 1999</div>
+        <div class="detail">charted nationally · multiple weeks</div>
+      </div>
+      <div class="press-item">
+        <div class="source">new brunswick underground</div>
+        <div class="detail">feature + review</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-row">
+    <div class="bottom-col">
+      <div class="section-label">dates</div>
+      <div class="date-entry">
+        <div class="event-name">a bionic benefit</div>
+        <div class="when">saturday, june 13, 2026 · 8pm</div>
+        <div class="where">pino's gift basket shoppe, wine cellar & lounge</div>
+        <div class="address">13 no 4th ave · highland park, nj</div>
+        <a href="https://www.facebook.com/events/977817404822674" target="_blank" class="event-link">event info ↗</a>
+      </div>
+    </div>
+    <div class="bottom-col">
+      <div class="section-label">contact</div>
+      <a href="mailto:prosolarmechanics@gmail.com" class="contact-email">prosolarmechanics@gmail.com</a>
+      <div class="contact-sub">bookings · press · transmissions</div>
+    </div>
+  </div>
+</Layout>

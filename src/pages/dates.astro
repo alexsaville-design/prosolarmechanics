@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="dates" activePage="dates">
+  <style>
+    .dates-list { padding: 32px 0; }
+    .date-entry { border-bottom: 1px solid #111; padding: 24px 0; display: grid; grid-template-columns: 140px 1fr; gap: 24px; }
+    .date-when { font-size: 12px; color: #555; line-height: 1.8; }
+    .date-when .month { font-size: 11px; color: #4ecdc4; letter-spacing: 2px; display: block; margin-bottom: 2px; }
+    .date-when .day { font-size: 20px; color: #888; display: block; }
+    .date-when .year { font-size: 11px; color: #444; }
+    .date-details .event-name { font-family: Georgia, serif; font-size: 16px; color: #ddd; font-weight: 400; margin-bottom: 6px; }
+    .date-details .time { font-size: 12px; color: #888; margin-bottom: 4px; }
+    .date-details .venue { font-size: 13px; color: #999; margin-bottom: 3px; }
+    .date-details .address { font-size: 12px; color: #555; margin-bottom: 10px; }
+    .date-details a { font-size: 12px; color: #4ecdc4; }
+  </style>
+
+  <div style="padding-top: 32px;">
+    <div class="section-label">dates</div>
+  </div>
+
+  <div class="dates-list">
+    <div class="date-entry">
+      <div class="date-when">
+        <span class="month">june</span>
+        <span class="day">13</span>
+        <span class="year">2026</span>
+      </div>
+      <div class="date-details">
+        <div class="event-name">a bionic benefit</div>
+        <div class="time">8pm</div>
+        <div class="venue">pino's gift basket shoppe, wine cellar & lounge</div>
+        <div class="address">13 no 4th ave · highland park, nj 08904</div>
+        <a href="https://www.facebook.com/events/977817404822674" target="_blank">event info ↗</a>
+      </div>
+    </div>
+  </div>
+</Layout>
