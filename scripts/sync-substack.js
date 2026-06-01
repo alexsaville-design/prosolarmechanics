@@ -1,79 +1,44 @@
 #!/usr/bin/env node
-// Fetches prosolarmechanics.substack.com/feed and creates Markdown files
+// Fetches prosolarmechanics.substack.com API and creates Markdown files
 // in src/content/log/ for any new posts.
 
 import { existsSync, mkdirSync, writeFileSync, readdirSync } from 'fs';
 
-const FEED_URL = 'https://prosolarmechanics.substack.com/feed';
+const API_URL = 'https://prosolarmechanics.substack.com/api/v1/posts?limit=25';
 const OUTPUT_DIR = 'src/content/log';
 
-async function fetchFeed() {
-  const res = await fetch(FEED_URL, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (compatible; ProsolarmechanicsBot/1.0; +https://prosolarmechanics.com)',
-      'Accept': 'application/rss+xml, application/xml, text/xml, */*',
-    }
-  });
-  if (!res.ok) throw new Error(`Failed to fetch feed: ${res.status}`);
-  return res.text();
-}
+const HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+  'Accept': 'application/json',
+};
 
-function extractCDATA(str) {
-  const m = str.match(/<!\[CDATA\[([\s\S]*?)\]\]>/);
-  return m ? m[1].trim() : str.trim();
-}
-
-function parseItems(xml) {
-  const items = [];
-  const itemRe = /<item>([\s\S]*?)<\/item>/g;
-  let match;
-
-  while ((match = itemRe.exec(xml)) !== null) {
-    const block = match[1];
-
-    const title = extractCDATA(
-      (block.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || ''
-    );
-    const link = (
-      (block.match(/<link>([\s\S]*?)<\/link>/) || [])[1] ||
-      extractCDATA((block.match(/<atom:link[^>]*href="([^"]*)"/) || [])[1] || '')
-    ).trim();
-    const pubDate = ((block.match(/<pubDate>([\s\S]*?)<\/pubDate>/) || [])[1] || '').trim();
-    const description = extractCDATA(
-      (block.match(/<description>([\s\S]*?)<\/description>/) || [])[1] || ''
-    );
-    const content = extractCDATA(
-      (block.match(/<content:encoded>([\s\S]*?)<\/content:encoded>/) || [])[1] || ''
-    );
-
-    // derive slug from the Substack URL  (/p/some-slug)
-    const slugMatch = link.match(/\/p\/([^/?#]+)/);
-    const slug = slugMatch ? slugMatch[1] : '';
-
-    if (!slug || !title) continue;
-
-    items.push({ title, link, pubDate, description, content: content || description, slug });
-  }
-
-  return items;
+async function fetchPosts() {
+  const res = await fetch(API_URL, { headers: HEADERS });
+  if (!res.ok) throw new Error(`Failed to fetch posts: ${res.status} ${res.statusText}`);
+  return res.json();
 }
 
 function escapeYaml(str) {
-  return str.replace(/"/g, '\\"').replace(/\n/g, ' ').trim();
+  return (str || '').replace(/"/g, '\\"').replace(/\n/g, ' ').trim();
 }
 
-function buildMarkdown({ title, link, pubDate, description, content, slug }) {
-  const date = pubDate ? new Date(pubDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0];
-  const desc = description.replace(/<[^>]+>/g, '').slice(0, 200).trim();
+function buildMarkdown(post) {
+  const date = post.post_date
+    ? new Date(post.post_date).toISOString().split('T')[0]
+    : new Date().toISOString().split('T')[0];
+  const desc = (post.description || post.subtitle || '')
+    .replace(/<[^>]+>/g, '').slice(0, 200).trim();
+  const url = post.canonical_url || `https://prosolarmechanics.substack.com/p/${post.slug}`;
+  const body = post.body_html || post.truncated_body_text || '';
 
   return `---
-title: "${escapeYaml(title)}"
+title: "${escapeYaml(post.title)}"
 date: ${date}
-substackUrl: "${link}"
+substackUrl: "${url}"
 description: "${escapeYaml(desc)}"
 ---
 
-${content}
+${body}
 `;
 }
 
@@ -84,19 +49,20 @@ async function main() {
     readdirSync(OUTPUT_DIR).filter(f => f.endsWith('.md')).map(f => f.replace('.md', ''))
   );
 
-  const xml = await fetchFeed();
-  const items = parseItems(xml);
+  const posts = await fetchPosts();
+  console.log(`fetched ${posts.length} post(s) from Substack`);
 
   let created = 0;
-  for (const item of items) {
-    if (existing.has(item.slug)) continue;
-    const filePath = `${OUTPUT_DIR}/${item.slug}.md`;
-    writeFileSync(filePath, buildMarkdown(item));
+  for (const post of posts) {
+    if (!post.slug || !post.title) continue;
+    if (existing.has(post.slug)) continue;
+    const filePath = `${OUTPUT_DIR}/${post.slug}.md`;
+    writeFileSync(filePath, buildMarkdown(post));
     console.log(`created: ${filePath}`);
     created++;
   }
 
-  console.log(`done — ${created} new post(s) synced, ${items.length - created} already up to date.`);
+  console.log(`done — ${created} new post(s) synced, ${posts.length - created} already up to date.`);
 }
 
 main().catch(err => { console.error(err); process.exit(1); });
