@@ -1,15 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
-
-const substackEntries = (await getCollection('log'))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 <Layout title="mechanics' log" activePage="log">
   <style>
     .log-intro { padding: 32px 0 24px; border-bottom: 1px solid #141414; }
     .log-intro p { font-size: 13px; color: #666; line-height: 1.7; }
-    .log-intro a { color: #4ecdc4; }
     .entries { padding: 24px 0; }
     .entry { border-bottom: 1px solid #111; padding: 24px 0; display: grid; grid-template-columns: 120px 1fr; gap: 24px; }
     .entry:last-child { border-bottom: none; }
@@ -20,16 +15,17 @@ const substackEntries = (await getCollection('log'))
     .entry-body .read { font-size: 12px; color: #c9a227; margin-top: 12px; display: inline-block; }
 
     .section-divider { padding: 32px 0 0; }
+    .new-label { font-size: 11px; color: #4ecdc4; letter-spacing: 4px; margin-bottom: 24px; }
     .archive-label { font-size: 11px; color: #4ecdc4; letter-spacing: 4px; margin-bottom: 24px; }
-    .substack-label { font-size: 11px; color: #4ecdc4; letter-spacing: 4px; margin-bottom: 24px; }
 
-    .new-entries { padding: 24px 0 0; }
+    .new-entries { padding: 8px 0 0; }
     .new-entry { border-bottom: 1px solid #111; padding: 24px 0; display: grid; grid-template-columns: 120px 1fr; gap: 24px; }
     .new-entry:last-child { border-bottom: none; }
     .new-entry-meta { font-size: 11px; color: #555; letter-spacing: 1px; line-height: 1.8; }
     .new-entry-body .entry-title { font-size: 15px; color: #ddd; margin-bottom: 10px; font-family: Georgia, serif; font-weight: 400; }
     .new-entry-body p { font-size: 13px; color: #999; line-height: 1.75; }
     .new-entry-body .read { font-size: 12px; color: #c9a227; margin-top: 12px; display: inline-block; }
+    #substack-loading { font-size: 12px; color: #444; padding: 24px 0; letter-spacing: 1px; }
 
     .substack-callout {
       margin: 0 0 32px;
@@ -43,7 +39,6 @@ const substackEntries = (await getCollection('log'))
 
     @media (max-width: 640px) {
       .entry, .new-entry { grid-template-columns: 1fr; gap: 8px; }
-      .entry-meta .entry-num { font-size: 13px; }
     }
   </style>
 
@@ -52,30 +47,19 @@ const substackEntries = (await getCollection('log'))
     <p>an ongoing account of missions, thoughts, and transmissions — from 1997 to the present.</p>
   </div>
 
-  {substackEntries.length > 0 && (
-    <div class="section-divider">
-      <div class="substack-label">new transmissions</div>
-      <div class="new-entries">
-        {substackEntries.map(entry => (
-          <div class="new-entry">
-            <div class="new-entry-meta">
-              {entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.')}
-            </div>
-            <div class="new-entry-body">
-              <div class="entry-title">{entry.data.title}</div>
-              {entry.data.description && <p>{entry.data.description}</p>}
-              <a href={`/log/${entry.slug}`} class="read">read →</a>
-            </div>
-          </div>
-        ))}
+  <div class="section-divider">
+    <div class="new-label">new transmissions</div>
+    <div id="substack-posts">
+      <div class="substack-callout">
+        <p>new writing from the mechanics — <a href="https://prosolarmechanics.substack.com" target="_blank">read on substack ↗</a></p>
       </div>
     </div>
-  )}
+  </div>
 
   <div class="section-divider">
     <div class="archive-label">archive · 1997–2004</div>
     <div class="substack-callout">
-      <p>new writing is published to <a href="https://prosolarmechanics.substack.com" target="_blank">the band substack</a> and appears above automatically.</p>
+      <p>new writing is published to <a href="https://prosolarmechanics.substack.com" target="_blank">the band substack</a> and appears above.</p>
     </div>
   </div>
 
@@ -103,4 +87,5 @@ const substackEntries = (await getCollection('log'))
       </div>
     </div>
   </div>
+
 </Layout>
