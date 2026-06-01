@@ -8,7 +8,12 @@ const FEED_URL = 'https://prosolarmechanics.substack.com/feed';
 const OUTPUT_DIR = 'src/content/log';
 
 async function fetchFeed() {
-  const res = await fetch(FEED_URL);
+  const res = await fetch(FEED_URL, {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (compatible; ProsolarmechanicsBot/1.0; +https://prosolarmechanics.com)',
+      'Accept': 'application/rss+xml, application/xml, text/xml, */*',
+    }
+  });
   if (!res.ok) throw new Error(`Failed to fetch feed: ${res.status}`);
   return res.text();
 }
