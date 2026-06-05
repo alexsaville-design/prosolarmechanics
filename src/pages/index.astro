@@ -1,5 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const latestPost = (await getCollection('log'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())[0];
 ---
 <Layout title="prosolar mechanics" activePage="home">
   <style>
@@ -98,8 +102,18 @@ import Layout from '../layouts/Layout.astro';
     </div>
     <div class="log-card substack">
       <div class="date sub">new · from substack</div>
-      <p>amy posts new entries to the band substack. new writing appears here as it's published — the archive goes back to 1997.</p>
-      <a href="/log" class="read">read latest →</a>
+      {latestPost ? (
+        <>
+          <p style="font-family: Georgia, serif; font-size: 14px; color: #ddd; margin-bottom: 8px;">{latestPost.data.title}</p>
+          {latestPost.data.description && <p>{latestPost.data.description}</p>}
+          <a href={`/log/${latestPost.slug}`} class="read">read latest →</a>
+        </>
+      ) : (
+        <>
+          <p>new writing from the mechanics — published to substack and synced here automatically.</p>
+          <a href="https://prosolarmechanics.substack.com" target="_blank" class="read">read on substack →</a>
+        </>
+      )}
     </div>
     <div class="log-card" style="border:1px solid #1a1a1a; background:#0a0a0a;">
       <div class="date" style="color:#4ecdc4; letter-spacing:3px;">dates</div>
