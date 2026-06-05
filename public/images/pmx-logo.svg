@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 680" width="680" height="680">
+  <rect width="680" height="680" fill="#080808"/>
+  <rect x="24" y="24" width="632" height="632" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="340" y="284" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="76" font-weight="400" fill="#f0ece0" letter-spacing="1">prosolar</text>
+  <line x1="180" y1="306" x2="500" y2="306" stroke="#c9a227" stroke-width="0.75"/>
+  <text x="340" y="396" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="76" font-weight="400" fill="#f0ece0" letter-spacing="1">mechanics</text>
+  <text x="340" y="444" text-anchor="middle" font-family="Verdana, Arial, sans-serif" font-size="11" fill="#4ecdc4" letter-spacing="4">sound breaking the monotony of space</text>
+</svg>
