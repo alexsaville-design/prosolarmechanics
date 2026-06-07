@@ -3,57 +3,212 @@ import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="press" activePage="press">
   <style>
-    .press-list { padding: 32px 0; }
-    .press-item { border-bottom: 1px solid #111; padding: 24px 0; display: grid; grid-template-columns: 160px 1fr; gap: 24px; }
-    .press-meta { font-size: 11px; color: #555; letter-spacing: 1px; line-height: 1.8; }
-    .press-source { font-size: 15px; color: #ddd; margin-bottom: 6px; font-family: Georgia, serif; font-weight: 400; }
-    .press-detail { font-size: 13px; color: #888; line-height: 1.7; }
-    .press-link { font-size: 12px; color: #c9a227; margin-top: 10px; display: inline-block; }
-    .archive-note { padding: 24px 0; font-size: 12px; color: #444; border-top: 1px solid #111; }
+    .press-intro { padding: 32px 0 24px; border-bottom: 1px solid #141414; }
+    .press-intro p { font-size: 13px; color: #666; line-height: 1.7; margin-top: 12px; }
+
+    .press-list { padding: 16px 0; }
+
+    .press-item {
+      border-bottom: 1px solid #111;
+      padding: 32px 0;
+      max-width: 680px;
+    }
+    .press-item:last-child { border-bottom: none; }
+
+    .press-meta {
+      font-size: 11px;
+      color: #555;
+      letter-spacing: 1px;
+      line-height: 2;
+      margin-bottom: 10px;
+    }
+    .press-meta .outlet { color: #888; font-size: 12px; }
+    .press-meta .byline { color: #555; }
+    .press-meta .date { color: #444; }
+
+    .press-source {
+      font-size: 17px;
+      color: #ddd;
+      margin-bottom: 14px;
+      font-family: Georgia, serif;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.3;
+    }
+
+    .press-body {
+      font-size: 14px;
+      color: #999;
+      line-height: 1.85;
+    }
+    .press-body p { margin-bottom: 1.2em; }
+    .press-body p:last-child { margin-bottom: 0; }
+
+    .press-pull {
+      font-size: 15px;
+      color: #bbb;
+      line-height: 1.75;
+      font-family: Georgia, serif;
+      font-style: italic;
+      border-left: 2px solid #2a2a2a;
+      padding-left: 20px;
+      margin: 20px 0;
+    }
+
+    .press-citation {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    .archive-note {
+      padding: 24px 0;
+      font-size: 12px;
+      color: #333;
+      border-top: 1px solid #0f0f0f;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .press-item { padding: 24px 0; }
+    }
   </style>
 
-  <div style="padding-top: 32px;">
+  <div class="press-intro">
     <div class="section-label">press</div>
+    <p>reviews and coverage · 1997–1999</p>
   </div>
 
   <div class="press-list">
+
     <div class="press-item">
-      <div class="press-meta">feature article<br>c. 2002</div>
-      <div>
-        <div class="press-source">"studio tan" · chris wargo</div>
-        <div class="press-detail">a feature article on prosolar mechanics by chris wargo.</div>
-        <a href="/press/studio-tan" class="press-link">read →</a>
+      <div class="press-meta">
+        <span class="outlet">Jersey Beat</span> &nbsp;·&nbsp;
+        <span class="byline">Jim Testa</span> &nbsp;·&nbsp;
+        <span class="date">July 5, 1999</span>
+      </div>
+      <div class="press-source">Reviews of the Week — Turn On (Powerbunny 4x4 Records)</div>
+      <div class="press-body">
+        <p>There are only seven songs on Prosolar Mechanics' debut CD (and a bonus rehearsal-tape track that sounds nothing like the rest of the album). You might as well say that there are "only" seven continents, or seven dwarves, or seven seas. Seven songs, each beautifully crafted, impeccably arranged, unique and special, each with its own range of rhythms, dynamics, guitar sounds, bass lines, and samples, the one unifying thread being Amy Jacob's stunning vocals.</p>
+        <p>On a personal note, it should be made clear that I regard the members of Prosolar Mechanics with enormous respect and affection. But objectivity isn't the issue here; excellence is. Every little touch seems inspired, from guitarist Alex Saville's cranky, grumbled background vocals, which serve as a brilliant counterpoint to Amy's keening melodicism on "Cosmopolitan," to the explosive drum sounds from Dave Reynolds that launch "Heaven Grand," to Mike Kabok's resoundingly funky yet otherworldly bass solo that kickstarts "Dive," to the eerie electronic sounds that infuse "Impact."</p>
+        <p>This is not your local neighborhood indie rock band, boys and girls. These are Prosolar Mechanics, on a mission to strengthen the life-force of the masses through sounds and ideas, and keep the forces of complacency, greed, and entropy at bay. May the force be with them.</p>
       </div>
     </div>
+
     <div class="press-item">
-      <div class="press-meta">jersey beat<br>2000</div>
-      <div>
-        <div class="press-source">jersey beat — w/e fest 2000</div>
-        <div class="press-detail">coverage of prosolar mechanics at w/e fest 2000. also: top 50 nj releases of 1999.</div>
+      <div class="press-meta">
+        <span class="outlet">East Coast Rocker</span> &nbsp;·&nbsp;
+        <span class="byline">Al Muzer</span> &nbsp;·&nbsp;
+        <span class="date">October 14, 1998 · cover story</span>
+      </div>
+      <div class="press-source">"The Future Sounds of Prosolar Mechanics"</div>
+      <div class="press-body">
+        <p class="press-citation">Cover story. Text not available in this archive.</p>
       </div>
     </div>
+
     <div class="press-item">
-      <div class="press-meta">college radio<br>1999</div>
-      <div>
-        <div class="press-source">college radio charts · 1999</div>
-        <div class="press-detail">charted nationally on college radio for multiple weeks in fall 1999. kzsu, and stations across the country.</div>
+      <div class="press-meta">
+        <span class="outlet">New Brunswick Underground</span> &nbsp;·&nbsp;
+        <span class="byline">Chris Wargo</span> &nbsp;·&nbsp;
+        <span class="date">September, 1998</span>
+      </div>
+      <div class="press-source">"Brain candy for gearheads and studio geeks"</div>
+      <div class="press-body">
+        <p class="press-citation">Feature on Prosolar Mechanics and a review of Studio Tan. No longer available online.</p>
       </div>
     </div>
+
     <div class="press-item">
-      <div class="press-meta">new brunswick<br>underground</div>
-      <div>
-        <div class="press-source">new brunswick underground magazine</div>
-        <div class="press-detail">feature on prosolar mechanics and a review of studio tan.</div>
+      <div class="press-meta">
+        <span class="outlet">Aquarian / East Coast Rocker</span> &nbsp;·&nbsp;
+        <span class="byline">Al Muzer</span> &nbsp;·&nbsp;
+        <span class="date">August 12, 1998</span>
+      </div>
+      <div class="press-source">Impact / X Marks the Spot (Powerbunny 4x4 Records, clear vinyl 7")</div>
+      <div class="press-body">
+        <p>Prosolar Mechanics' just-released, clear vinyl 7" features a radio-ready slab of angst-pop genius known as "Impact" and a swirling, swerving, freakishly driven, damn-near essential brood-pulse ball-buster called "X Marks the Spot." In addition to their latest wall of pop-based, Sonic Youth-aware, carpet-of-sound think, mega-melt guitar-barrage, P-Mech drummer Dave Reynolds (ex-Urchins, Spiral Jetty), bassist Mike Kabok (Clay Idols), guitarist/vocalist Alex Saville (ex-ExVegas), and vocalist/guitarist Amy Jacob (ex-ExVegas) have thrown down the gauntlet and are double-dog daring you to visit their spiffed-up web site.</p>
       </div>
     </div>
+
     <div class="press-item">
-      <div class="press-meta">_excerpt zine<br>1999</div>
-      <div>
-        <div class="press-source">_excerpt zine — mp3 reviews</div>
-        <div class="press-detail">review of prosolar mechanics mp3 releases.</div>
+      <div class="press-meta">
+        <span class="outlet">Jersey Beat</span> &nbsp;·&nbsp;
+        <span class="byline">Jim Testa</span> &nbsp;·&nbsp;
+        <span class="date">April, 1998 · issue #63</span>
+      </div>
+      <div class="press-source">"Music for Space Travel" — Prosolar Mechanics Interpreted</div>
+      <div class="press-body">
+        <p class="press-citation">No longer available online.</p>
       </div>
     </div>
+
+    <div class="press-item">
+      <div class="press-meta">
+        <span class="outlet">Asbury Park Press / Home News and Tribune</span> &nbsp;·&nbsp;
+        <span class="byline">Kelly-Jane Cotter</span> &nbsp;·&nbsp;
+        <span class="date">January 9, 1998</span>
+      </div>
+      <div class="press-source">Feature</div>
+      <div class="press-body">
+        <p>Amy Jacob and Alex Saville compare their guitar work to an orchestra's string section, rather than to the standard rock format of lead guitarist and rhythm guitarist.</p>
+        <p class="press-pull">"It often feels like we're writing one part instead of two. Amy and I have played together for so long that we often don't feel right unless we can hear the other's guitar too." — Alex Saville</p>
+        <p>In Prosolar Mechanics, the New Brunswick duo's latest band, the guitars sound almost woven together. Jacob and Saville's affection for Sonic Youth — prominently displayed in the music of their last band, ExVegas — remains apparent. Dissonance and distortion run through every song.</p>
+        <p>But Prosolar Mechanics also gives plenty of room to its rhythm section. The drumming of Dave Reynolds, formerly of the Urchins, and the bass playing of Mike Kabok, formerly of the Los Angeles-based Clay Idols, create up-tempo beats that are vaguely danceable. Jacob's vocals are more prominent and less hazy than her work in ExVegas. The emphasis on vocal melody and the surge of energy from Kabok and Reynolds fuel the "string section" and give the music a smart, contemporary feel.</p>
+        <p>"Mike's bass uses more effects than other bassists we've had," Saville said, "and that, combined with Dave's Motown-influenced drumming, allows us to do a lot of sonic guitar work without sounding overly heavy."</p>
+      </div>
+    </div>
+
+    <div class="press-item">
+      <div class="press-meta">
+        <span class="outlet">Tourdates.com</span> &nbsp;·&nbsp;
+        <span class="byline">Robin Pastorio-Newman</span> &nbsp;·&nbsp;
+        <span class="date">March, 1998</span>
+      </div>
+      <div class="press-source">Prosolar Mechanics at the Court Tavern, New Brunswick</div>
+      <div class="press-body">
+        <p class="press-pull">"Oh. My. God. Quit your job. The incredible wall of guitar noise, big big drums and hypnotic vocals Prosolar Mechanics puts out — a new reason to live! In particular, 'Habit' goes right for the jugular, and you LIKE it. Amy Jacob's singing, 'it's your fault, it's your fault,' over throbbing bass and under stinging guitar is almost too much fun. My personal favorite is 'The Body Spills' — hint: if I had a record company I'd beg Prosolar Mechanics to sign with me."</p>
+      </div>
+    </div>
+
+    <div class="press-item">
+      <div class="press-meta">
+        <span class="outlet">New Brunswick Underground</span> &nbsp;·&nbsp;
+        <span class="byline">Jen Salvato</span> &nbsp;·&nbsp;
+        <span class="date">February, 1998 · issue #1</span>
+      </div>
+      <div class="press-source">Interview with Amy Jacob</div>
+      <div class="press-body">
+        <p class="press-citation">No longer available online.</p>
+      </div>
+    </div>
+
+    <div class="press-item">
+      <div class="press-meta">
+        <span class="outlet">Jersey Beat</span> &nbsp;·&nbsp;
+        <span class="byline">Jim Testa</span> &nbsp;·&nbsp;
+        <span class="date">Summer, 1997 · issue #60</span>
+      </div>
+      <div class="press-source">First mention</div>
+      <div class="press-body">
+        <p>Alex Saville and Amy Jacob of ExVegas team with veteran New Brunswick drummer Dave Reynolds (Spiral Jetty, Urchins) and newcomer bassist Mike Kabok in this new group. The sonic guitars, throbbing funk bass and provocative vocals on this 3-song demo suggest Thurston Moore jamming with the Bush Tetras. "X Marks the Spot" teems with paranoia and mystery. Stay tuned — this powerful group should be a major player in the New Brunswick scene by the end of summer.</p>
+      </div>
+    </div>
+
+    <div class="press-item">
+      <div class="press-meta">
+        <span class="outlet">Various</span> &nbsp;·&nbsp;
+        <span class="date">1999–2000</span>
+      </div>
+      <div class="press-source">College radio · national charts</div>
+      <div class="press-body">
+        <p class="press-citation">Charted nationally on college radio for multiple weeks in fall 1999. Stations included KZSU and others across the country. Also: Jersey Beat coverage of W/E Fest 2000.</p>
+      </div>
+    </div>
+
   </div>
 
   <div class="archive-note">all press is archival — prosolar mechanics were active 1997–2004 and are now returning.</div>
+
 </Layout>
