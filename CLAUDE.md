@@ -91,8 +91,8 @@ Part 51 is the special Boonefest 2000 edition (out of sequence by design).
 
 Log entries carry a `mechanic id:` in their header. **These are not real birthdates.** IDs in use:
 
-- `10001001` — Amy's voice / satellite entries (log parts 1.5 and 3, replaced from 04251964)
-- `147111449335` — Amy's Substack user ID (@lastmechanic); used site-wide for all entries previously carrying 03141969 (a real birthdate, now replaced)
+- `10001001-A` — Alex's mechanic ID (class A)
+- `14711149335-A` — Amy's mechanic ID (class A); encodes "AMY J SAVILLE" via 1–9 rotation cipher (A=1…I=9, J=1…R=9, S=1…Z=8)
 
 ---
 
